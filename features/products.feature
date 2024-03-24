@@ -55,7 +55,28 @@ Scenario: Read a Product - 3
     And I should see "Cloths" in the "Category" dropdown
     And I should see "59.95" in the "Price" field
 
-Scenario: Delete a Product - 4
+Scenario: Update a Product - 4
+    When I visit the "Home Page"
+    And I set the "Name" to "Hat"
+    And I press the "Search" button
+    Then I should see the message "Success"
+    And I should see "A red fedora" in the "Description" field
+    When I change "Name" to "Fedora"
+    And I press the "Update" button
+    Then I should see the message "Success"
+    When I copy the "Id" field
+    And I press the "Clear" button
+    And I paste the "Id" field
+    And I press the "Retrieve" button
+    Then I should see the message "Success"
+    And I should see "Fedora" in the "Name" field
+    When I press the "Clear" button
+    And I press the "Search" button
+    Then I should see the message "Success"
+    And I should see "Fedora" in the results
+    And I should not see "Hat" in the results
+
+Scenario: Delete a Product - 5
     When I visit the "Home Page"
     And I set the "Name" to "Hat"
     And I press the "Search" button
@@ -71,7 +92,7 @@ Scenario: Delete a Product - 4
     Then I should see the message "Success"
     And I should not see "Hat" in the results
 
-Scenario: List all products - 5
+Scenario: List all products - 6
     When I visit the "Home Page"
     And I press the "Clear" button
     And I press the "Search" button
@@ -81,7 +102,7 @@ Scenario: List all products - 5
     And I should see "Big Mac" in the results
     And I should see "Sheets" in the results
 
-Scenario: Search by category - 6
+Scenario: Search by category - 7
     When I visit the "Home Page"
     And I press the "Clear" button
     And I select "Food" in the "Category" dropdown
@@ -92,7 +113,7 @@ Scenario: Search by category - 6
     And I should not see "Shoes" in the results
     And I should not see "Sheets" in the results
 
-Scenario: Search by available - 7
+Scenario: Search by available - 8
     When I visit the "Home Page"
     And I press the "Clear" button
     And I select "True" in the "Available" dropdown
@@ -103,7 +124,7 @@ Scenario: Search by available - 7
     And I should see "Sheets" in the results
     And I should not see "Shoes" in the results
 
-Scenario: Search by name - 8
+Scenario: Search by name - 9
     When I visit the "Home Page"
     And I set the "Name" to "Hat"
     And I press the "Search" button
